@@ -103,4 +103,5 @@ int main()
     {
         std::cout << result[i].name << " " << result[i].gender << " " << result[i].age << std::endl;
     }
+    delete[] result;
 }
