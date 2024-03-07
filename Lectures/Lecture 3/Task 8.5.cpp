@@ -1,6 +1,5 @@
 #include <iostream>
 
-using DoubleFunction = double(*)(double);
 double addOne(double x)
 {
 	return x + 1;
