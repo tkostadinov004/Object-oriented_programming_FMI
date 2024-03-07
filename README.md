@@ -11,3 +11,4 @@
 ## Lectures
 - **Week 1:** Structures
 - **Week 2:** File streams
+- **Week 3:** Function templates, higher-order functions, type redefinition, templates, binary files
