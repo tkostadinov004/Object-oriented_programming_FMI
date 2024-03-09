@@ -25,7 +25,7 @@ struct Line
 	}
 	bool isEquivalentTo(const Line& other)
 	{
-		return getDistance() == other.getDistance();
+		return fabs(getDistance() - other.getDistance()) < 0.0000001;
 	}
 	void printLine()
 	{
