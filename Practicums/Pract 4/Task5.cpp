@@ -227,7 +227,7 @@ void freeMemory(University& university)
 }
 int main()
 {
-    //University uni{ new char[10] {"SU"}, {{new char[10] {"Ivan"}, "111111111", Major::IS, DegreeType::Bacherors, EducationType::FullTime}, {new char[10] {"Georgi"}, "222222222", Major::M, DegreeType::Masters, EducationType::PartTime}}, 2 };
+    //University uni{ new char[10] {"SU"}, {{new char[10] {"Ivan"}, "1111111111", Major::IS, DegreeType::Bacherors, EducationType::FullTime}, {new char[10] {"Georgi"}, "2222222222", Major::M, DegreeType::Masters, EducationType::PartTime}}, 2 };
     //saveUniversityToFile("uni.dat", uni);
 
     University uni{};
