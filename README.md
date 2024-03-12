@@ -3,6 +3,7 @@
 ## Practicums
 - **Week 1/2:** Structures and unions
 - **Week 3:** File streams
+- **Week 4:** Binary files
 
 ## Seminars
 - **Week 1:** Structures, enums, unions
