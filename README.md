@@ -8,6 +8,7 @@
 ## Seminars
 - **Week 1:** Structures, enums, unions
 - **Week 2:** File streams
+- **Week 3:** Binary files and fstream
 
 ## Lectures
 - **Week 1:** Structures
