@@ -29,5 +29,5 @@ void copyFile(const char* source_filename, const char* destination_filename)
 
 int main()
 {
-    copyFile("Task2.cpp", "result.txt");
+    copyFile("Task 2 - copy file contents.cpp", "result.txt");
 }

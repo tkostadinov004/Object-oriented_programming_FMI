@@ -82,11 +82,11 @@ void convertLettersCaseInFile(const char* fileName, bool toCaps)
 int main()
 {
     {
-        copyFile("Task4.cpp", "result.txt");
+        copyFile("lorem.txt", "result.txt");
         convertLettersCaseInFile("result.txt", true);
     }
     {
-        copyFile("Task4.cpp", "result.txt");
+        copyFile("lorem.txt", "result.txt");
         convertLettersCaseInFile("result.txt", false);
     }
 }
