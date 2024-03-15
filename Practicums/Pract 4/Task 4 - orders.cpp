@@ -141,4 +141,6 @@ int main()
         printOrder(orders[i]);
         std::cout << "---------------------" << std::endl;
     }
+
+    freeMemory(orders, size);
 }

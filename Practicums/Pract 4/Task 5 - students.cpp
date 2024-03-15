@@ -12,33 +12,33 @@ void printMajorTitle(Major major)
 {
     switch (major)
     {
-        case Major::CS:
-            std::cout << "Computer science";
-            break;
-        case Major::IS:
-            std::cout << "Information systems";
-            break;
-        case Major::I:
-            std::cout << "Informatics";
-            break;
-        case Major::SI:
-            std::cout << "Software engineering";
-            break;
-        case Major::M:
-            std::cout << "Mathematics";
-            break;
-        case Major::AM:
-            std::cout << "Applied mathematics";
-            break;
-        case Major::DA:
-            std::cout << "Data analysis";
-            break;
-        case Major::STAT:
-            std::cout << "Statistics";
-            break;
-        default:
-            std::cout << "Invalid major!";        
-            break;
+    case Major::CS:
+        std::cout << "Computer science";
+        break;
+    case Major::IS:
+        std::cout << "Information systems";
+        break;
+    case Major::I:
+        std::cout << "Informatics";
+        break;
+    case Major::SI:
+        std::cout << "Software engineering";
+        break;
+    case Major::M:
+        std::cout << "Mathematics";
+        break;
+    case Major::AM:
+        std::cout << "Applied mathematics";
+        break;
+    case Major::DA:
+        std::cout << "Data analysis";
+        break;
+    case Major::STAT:
+        std::cout << "Statistics";
+        break;
+    default:
+        std::cout << "Invalid major!";
+        break;
     }
 }
 enum class DegreeType
@@ -49,18 +49,18 @@ void printDegreeType(DegreeType degreeType)
 {
     switch (degreeType)
     {
-        case DegreeType::Bacherors:
-            std::cout << "Bachelor's";
-            break;
-        case DegreeType::Masters:
-            std::cout << "Master's";
-            break;
-        case DegreeType::PhD:
-            std::cout << "PhD";
-            break;
-        default:
-            std::cout << "Invalid degree type!";
-            break;
+    case DegreeType::Bacherors:
+        std::cout << "Bachelor's";
+        break;
+    case DegreeType::Masters:
+        std::cout << "Master's";
+        break;
+    case DegreeType::PhD:
+        std::cout << "PhD";
+        break;
+    default:
+        std::cout << "Invalid degree type!";
+        break;
     }
 }
 enum class EducationType
@@ -204,9 +204,9 @@ void printStudent(const Student& student)
 {
     std::cout << "Name: " << student.name << ", Faculty number: " << student.facultyNumber << ", Major: ";
     printMajorTitle(student.major);
-    std::cout << ", Education type: "; 
+    std::cout << ", Education type: ";
     printEducationType(student.educationType);
-    std::cout << ", Degree type: "; 
+    std::cout << ", Degree type: ";
     printDegreeType(student.degreeType);
     std::cout << std::endl;
 }
@@ -227,12 +227,14 @@ void freeMemory(University& university)
 }
 int main()
 {
-    //University uni{ new char[10] {"SU"}, {{new char[10] {"Ivan"}, "1111111111", Major::IS, DegreeType::Bacherors, EducationType::FullTime}, {new char[10] {"Georgi"}, "2222222222", Major::M, DegreeType::Masters, EducationType::PartTime}}, 2 };
-    //saveUniversityToFile("uni.dat", uni);
+    /*University uni{ new char[10] {"SU"}, {{new char[10] {"Ivan"}, "1111111111", Major::IS, DegreeType::Bacherors, EducationType::FullTime}, {new char[10] {"Georgi"}, "2222222222", Major::M, DegreeType::Masters, EducationType::PartTime}}, 2 };
+    saveUniversityToFile("uni.dat", uni);*/
 
-    University uni{};
-    loadUniversityFromFile("uni.dat", uni);
+    University university{};
+    loadUniversityFromFile("uni.dat", university);
 
-    std::cout << "University name: " << uni.name << std::endl;
-    printUniversityStudents(uni);
+    std::cout << "University name: " << university.name << std::endl;
+    printUniversityStudents(university);
+
+    freeMemory(university);
 }

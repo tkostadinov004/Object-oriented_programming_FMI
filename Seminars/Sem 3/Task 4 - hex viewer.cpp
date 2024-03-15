@@ -98,7 +98,7 @@ void saveAs(const char* filename, const HexViewerFile& file)
 	{
 		return;
 	}
-	
+
 	saveAs(ofs, file);
 }
 void save(const HexViewerFile& file)
@@ -138,4 +138,6 @@ int main()
 
 	save(file);
 	saveAs("myData2.dat", file);
+
+	delete[] file.data;
 }
