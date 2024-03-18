@@ -18,13 +18,29 @@ struct Matrix
 		this->rows = rows;
 		this->cols = cols;
 
-		data = new int*[rows];
+		data = new int* [rows];
 	}
 	Matrix(const Matrix& matrix)
 	{
-		data = matrix.data;
 		rows = matrix.rows;
 		cols = matrix.cols;
+		data = new int* [rows];
+		for (size_t i = 0; i < matrix.rows; i++)
+		{
+			data[i] = new int[matrix.cols];
+			for (size_t j = 0; j < matrix.cols; j++)
+			{
+				this->data[i][j] = matrix.data[i][j];
+			}
+		}
+	}
+	~Matrix()
+	{
+		for (size_t i = 0; i < this->rows; i++)
+		{
+			delete[] data[i];
+		}
+		delete[] data;
 	}
 	Matrix multiplyBy(const Matrix& other) const
 	{
@@ -100,14 +116,6 @@ void deserializeMatrix(const char* filename, Matrix& matrix)
 
 	deserializeMatrix(ifs, matrix);
 }
-void freeMemory(Matrix matrix)
-{
-	for (size_t i = 0; i < matrix.rows; i++)
-	{
-		delete[] matrix.data[i];
-	}
-	delete[] matrix.data;
-}
 int main()
 {
 	/*Matrix first(2, 3);
@@ -132,7 +140,4 @@ int main()
 	}
 
 	serializeMatrix("result.dat", mult);
-	freeMemory(first);
-	freeMemory(second);
-	freeMemory(mult);
 }
