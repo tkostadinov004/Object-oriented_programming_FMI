@@ -1,0 +1,5 @@
+4 5
+Far Cry 5|40|1
+CS:GO|0|1
+Europa Universalis|60.99|0
+Madden NFL|20|1
