@@ -91,9 +91,14 @@ struct MessageCollection
 private:
 	Message* messages = nullptr;
 	size_t count = 0;
-	size_t capacity = 1;
+	size_t capacity = 0;
 	void grow()
 	{
+		if (capacity == 0)
+		{
+			capacity = 1;
+		}
+
 		Message* temp = new Message[capacity *= 2];
 		for (size_t i = 0; i < count; i++)
 		{
