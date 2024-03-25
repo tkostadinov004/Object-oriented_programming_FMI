@@ -24,9 +24,7 @@ struct Line
 	}
 	bool isPointOnLine(const Point& point) const
 	{
-		int slope = this->getSlope();
-		int yIntercept = first.y - slope * first.x;
-		return point.y == slope * point.x + yIntercept;
+		return point.y == this->getSlope() * point.x + this->getYIntercept();
 	}
 	Point operator*(const Line& other) const //findIntersectionWith
 	{
@@ -37,8 +35,8 @@ struct Line
 	}
 	Line getAngleBisectorWith(const Line& other) const
 	{
-		float thisSlope = this->getSlope();
-		float otherSlope = other.getSlope();
+		double thisSlope = this->getSlope();
+		double otherSlope = other.getSlope();
 
 		double steeperSlope = abs(thisSlope) > abs(otherSlope) ? thisSlope : otherSlope;
 		double smallerSlope = steeperSlope == thisSlope ? otherSlope : thisSlope;
