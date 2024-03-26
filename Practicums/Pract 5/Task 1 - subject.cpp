@@ -28,7 +28,7 @@ struct Student
 {
 private:
 	char* firstName = nullptr;
-	char* lastName= nullptr;
+	char* lastName = nullptr;
 	size_t gradesCount;
 	float grades[MAX_GRADES_COUNT];
 	char facultyNumber[FACULTY_NUMBER_LENGTH + 1];
@@ -153,13 +153,13 @@ public:
 		ifs.read((char*)&gradesCount, sizeof(gradesCount));
 		ifs.read((char*)grades, sizeof(float) * MAX_GRADES_COUNT);
 	}
-	void copyTo(Student& other) const
+	void copyFrom(const Student& other)
 	{
-		setStr(other.firstName, this->firstName);
-		setStr(other.lastName, this->lastName);
-		setFacultyNumber(other.facultyNumber, this->facultyNumber);
-		other.gradesCount = this->gradesCount;
-		other.copyGrades(this->grades, this->gradesCount);
+		setStr(this->firstName, other.firstName);
+		setStr(this->lastName, other.lastName);
+		setFacultyNumber(this->facultyNumber, other.facultyNumber);
+		this->gradesCount = other.gradesCount;
+		this->copyGrades(other.grades, other.gradesCount);
 	}
 };
 struct Teacher
@@ -223,11 +223,11 @@ public:
 
 		ifs.read((char*)&department, sizeof(department));
 	}
-	void copyTo(Teacher& other) const
+	void copyFrom(const Teacher& other)
 	{
-		setStr(other.firstName, this->firstName);
-		setStr(other.lastName, this->lastName);
-		other.department = this->department;
+		setStr(this->firstName, other.firstName);
+		setStr(this->lastName, other.lastName);
+		this->department = other.department;
 	}
 };
 
@@ -297,12 +297,12 @@ public:
 		{
 			return false;
 		}
-		student.copyTo(this->students[studentsCount++]);
+		this->students[studentsCount++].copyFrom(student);
 		return true;
 	}
 	void appointTeacher(const Teacher& teacher)
 	{
-		teacher.copyTo(this->teacher);
+		this->teacher.copyFrom(teacher);
 	}
 	bool serialize(const char* filename) const
 	{
