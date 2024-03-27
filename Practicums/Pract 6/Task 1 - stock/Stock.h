@@ -5,14 +5,13 @@ constexpr size_t STOCK_NAME_LENGTH = 20;
 constexpr size_t STOCK_PRICES_COUNT = 12;
 class Stock
 {
-	char abbreviation[STOCK_ABBREVIATION_LENGTH + 1];
-	char name[STOCK_NAME_LENGTH + 1];
-	float prices[STOCK_PRICES_COUNT]{ 0 };
+	char abbreviation[STOCK_ABBREVIATION_LENGTH + 1] = "N/A";
+	char name[STOCK_NAME_LENGTH + 1] = "undefined";
+	float prices[STOCK_PRICES_COUNT] = { 0 };
 	void copyFrom(const Stock& other);
 public:
 	Stock();
 	Stock(const char* abbreviation, const char* name, const float* prices);
-	Stock(const Stock& other);
 	Stock& operator=(const Stock& other);
 	const char* getAbbreviation() const;
 	void setAbbreviation(const char* abbreviation);

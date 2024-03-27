@@ -2,18 +2,13 @@
 #include "Projection.h"
 #pragma warning (disable: 4996)
 
-Projection::Projection() : movie(), datetime("undefined"), hallName("undefined") {}
+Projection::Projection() : datetime("undefined"), hallName("undefined") {}
 
 Projection::Projection(const Movie& movie, const char* datetime, const char* hallName)
 {
     setMovie(movie);
     setDatetime(datetime);
     setHallName(hallName);
-}
-
-Projection::Projection(const Projection& other) : movie(other.movie)
-{
-
 }
 
 const Movie& Projection::getMovie() const

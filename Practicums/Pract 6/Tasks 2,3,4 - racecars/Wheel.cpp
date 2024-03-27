@@ -6,26 +6,12 @@ void Wheel::copyFrom(const Wheel& other)
     setMaterial(other.material);
 }
 
-Wheel::Wheel() : Wheel(0, Material::Undefined) {}
+Wheel::Wheel() : radius(0), material(Material::Undefined) {}
 
 Wheel::Wheel(int radius, Material material)
 {
     setRadius(radius);
     setMaterial(material);
-}
-
-Wheel::Wheel(const Wheel& other)
-{
-    copyFrom(other);
-}
-
-Wheel& Wheel::operator=(const Wheel& other)
-{
-    if (this != &other)
-    {
-        copyFrom(other);
-    }
-    return *this;
 }
 
 int Wheel::getRadius() const

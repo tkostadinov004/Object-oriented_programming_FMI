@@ -1,6 +1,6 @@
 #include "Track.h"
 
-Track::Track() : Track(0, 0, 0) {}
+Track::Track() : slowCorners(0), fastCorners(0), straightLength(0) {}
 
 Track::Track(int slowCorners, int fastCorners, int straightLength)
 {

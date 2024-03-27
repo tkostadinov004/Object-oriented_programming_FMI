@@ -4,23 +4,18 @@
 
 void Stock::copyFrom(const Stock& other)
 {
-	setAbbreviation(abbreviation);
-	setName(name);
-	setPrices(prices);
+	setAbbreviation(other.abbreviation);
+	setName(other.name);
+	setPrices(other.prices);
 }
 
-Stock::Stock() : Stock("N/A", "undefined", { 0 }) {}
+Stock::Stock() = default;
 
 Stock::Stock(const char* abbreviation, const char* name, const float* prices)
 {
 	setAbbreviation(abbreviation);
 	setName(name);
 	setPrices(prices);
-}
-
-Stock::Stock(const Stock& other)
-{
-	copyFrom(other);
 }
 
 Stock& Stock::operator=(const Stock& other)
@@ -95,7 +90,7 @@ bool Stock::isProfitable() const
 	int increasingCount = 0;
 	for (size_t i = 0; i < STOCK_PRICES_COUNT - 1; i++)
 	{
-		if (prices[i] < prices[i  + 1])
+		if (prices[i] < prices[i + 1])
 		{
 			increasingCount++;
 		}

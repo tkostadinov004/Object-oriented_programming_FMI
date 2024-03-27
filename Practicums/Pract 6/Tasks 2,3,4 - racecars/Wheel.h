@@ -16,8 +16,6 @@ class Wheel
 public:
 	Wheel();
 	Wheel(int radius, Material material);
-	Wheel(const Wheel& other);
-	Wheel& operator=(const Wheel& other);
 	int getRadius() const;
 	void setRadius(int radius);
 	Material getMaterial() const;

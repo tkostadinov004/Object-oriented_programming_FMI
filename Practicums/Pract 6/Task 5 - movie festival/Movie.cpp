@@ -2,7 +2,7 @@
 #include "Movie.h"
 #pragma warning (disable: 4996)
 
-Movie::Movie() : Movie("undefined", "undefined", 0) {}
+Movie::Movie() : title("undefined"), director("undefined"), length(0) {}
 
 Movie::Movie(const char* title, const char* director, int length)
 {

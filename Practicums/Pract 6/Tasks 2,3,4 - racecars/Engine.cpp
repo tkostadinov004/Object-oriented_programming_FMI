@@ -9,27 +9,13 @@ void Engine::copyFrom(const Engine& other)
     setVIN(other.VIN);
 }
 
-Engine::Engine() : Engine(0, 0, "undefined") {}
+Engine::Engine() : power(0), displacement(0), VIN("undefined") {}
 
 Engine::Engine(int power, int displacement, const char* VIN)
 {
     setPower(power);
     setDisplacement(displacement);
     setVIN(VIN);
-}
-
-Engine::Engine(const Engine& other)
-{
-    copyFrom(other);
-}
-
-Engine& Engine::operator=(const Engine& other)
-{
-    if (this != &other)
-    {
-        copyFrom(other);
-    }
-    return *this;
 }
 
 int Engine::getPower() const

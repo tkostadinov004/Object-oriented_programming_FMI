@@ -15,21 +15,20 @@ enum class Drivetrain
 };
 class Car
 {
-	char regNumber[CAR_REGNUMBER_LENGTH + 1];
-	char manufacturer[CAR_MANUFACTURER_LENGTH + 1];
-	char model[CAR_MODEL_LENGTH + 1];
-	float fuelConsumption[3];
+	char regNumber[CAR_REGNUMBER_LENGTH + 1] = "N/A";
+	char manufacturer[CAR_MANUFACTURER_LENGTH + 1] = "undefined";
+	char model[CAR_MODEL_LENGTH + 1] = "undefined";
+	float fuelConsumption[3] = { 0, 0, 0 };
 	Engine engine;
-	Wheel* wheel;
-	Drivetrain drivetrain;
-	int acceleration;
-	int topSpeed;
-	int handling;
+	Wheel* wheel = nullptr;
+	Drivetrain drivetrain = Drivetrain::Undefined;
+	int acceleration = 0;
+	int topSpeed = 0;
+	int handling = 0;
 	void copyFrom(const Car& other);
 public:
 	Car();
 	Car(const char* regNumber, const char* manufacturer, const char* model, const Engine& engine, Wheel* wheel, float cityConsumption, float outOfCityConsumption, float combinedConsumption, Drivetrain drivetrain, int acceleration, int topSpeed, int handling);
-	Car(const Car& other);
 	Car& operator=(const Car& other);
 	const char* getRegNumber() const;
 	void setRegNumber(const char* regNumber);

@@ -2,6 +2,14 @@
 #include "Car.h"
 #pragma warning (disable : 4996)
 
+int main()
+{
+	Wheel w(20, Material::Aluminium);
+	Car c1("VVSA", "T", "C", { 100, 200, "VIN" }, &w, 20, 20, 20, Drivetrain::FourWheel, 2, 3, 4);
+	Car c2 = c1;
+	Car c3;
+	c3 = c2;
+}
 void Car::copyFrom(const Car& other)
 {
 	setRegNumber(other.regNumber);
@@ -16,7 +24,7 @@ void Car::copyFrom(const Car& other)
 	setHandling(other.handling);
 }
 
-Car::Car() : Car("N/A", "undefined", "undefined", {}, {}, 0, 0, 0, Drivetrain::Undefined, 0, 0, 0) {}
+Car::Car() = default;
 
 Car::Car(const char* regNumber, const char* manufacturer, const char* model, const Engine& engine, Wheel* wheel, float cityConsumption, float outOfCityConsumption, float combinedConsumption, Drivetrain drivetrain, int acceleration, int topSpeed, int handling)
 {
@@ -30,11 +38,6 @@ Car::Car(const char* regNumber, const char* manufacturer, const char* model, con
 	setAcceleration(acceleration);
 	setTopSpeed(topSpeed);
 	setHandling(handling);
-}
-
-Car::Car(const Car& other) : wheel(other.wheel)
-{
-	copyFrom(other);
 }
 
 Car& Car::operator=(const Car& other)

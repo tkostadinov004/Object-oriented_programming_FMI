@@ -10,8 +10,6 @@ class Engine
 public:
 	Engine();
 	Engine(int power, int displacement, const char* VIN);
-	Engine(const Engine& other);
-	Engine& operator=(const Engine& other);
 	int getPower() const;
 	void setPower(int power);
 	int getDisplacement() const;

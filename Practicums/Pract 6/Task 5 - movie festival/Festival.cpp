@@ -8,7 +8,7 @@ void Festival::copyFrom(const Festival& other)
     setProjections(other.projections, other.projectionsCount);
 }
 
-Festival::Festival() : Festival(name, nullptr, 0)
+Festival::Festival() : name("undefined"), projections(nullptr), projectionsCount(0)
 {
 }
 
