@@ -14,6 +14,7 @@ void ShoppingCart::copyFrom(const ShoppingCart& other)
 void ShoppingCart::free()
 {
 	delete[] products;
+	products = nullptr;
 }
 
 int ShoppingCart::indexOf(const Product& product)
