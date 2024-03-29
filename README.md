@@ -11,6 +11,7 @@
 - **Week 2:** File streams
 - **Week 3:** Binary files and fstream
 - **Week 4/5:** Member functions, constructors, destructors, encapsulation, getters and setters
+- **Week 6:** Rule of four, composition, and aggregation
 
 ## Lectures
 - **Week 1:** Structures
