@@ -6,7 +6,6 @@ class Race //aggregation example
 	Track* track;
 	Car* cars;
 	size_t carsCount;
-	void copyFrom(const Race& other);
 	Car* orderCars() const;
 	float calculateCarCoefficient(const Car& car) const;
 public:

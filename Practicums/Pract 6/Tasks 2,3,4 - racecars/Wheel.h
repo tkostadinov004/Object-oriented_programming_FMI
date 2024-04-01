@@ -12,7 +12,6 @@ class Wheel
 {
 	int radius;
 	Material material;
-	void copyFrom(const Wheel& other);
 public:
 	Wheel();
 	Wheel(int radius, Material material);

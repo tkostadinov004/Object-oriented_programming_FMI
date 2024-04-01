@@ -1,11 +1,5 @@
 #include "Wheel.h"
 
-void Wheel::copyFrom(const Wheel& other)
-{
-    setRadius(other.radius);
-    setMaterial(other.material);
-}
-
 Wheel::Wheel() : radius(0), material(Material::Undefined) {}
 
 Wheel::Wheel(int radius, Material material)

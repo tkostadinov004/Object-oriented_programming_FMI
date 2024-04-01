@@ -2,13 +2,6 @@
 #include "Engine.h"
 #pragma warning (disable: 4996)
 
-void Engine::copyFrom(const Engine& other)
-{
-    setPower(other.power);
-    setDisplacement(other.displacement);
-    setVIN(other.VIN);
-}
-
 Engine::Engine() : power(0), displacement(0), VIN("undefined") {}
 
 Engine::Engine(int power, int displacement, const char* VIN)

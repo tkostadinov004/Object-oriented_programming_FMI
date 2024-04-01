@@ -1,14 +1,6 @@
 #include <iostream>
 #include "Race.h"
 
-void Race::copyFrom(const Race& other)
-{
-    setTrack(other.track);
-
-    this->cars = other.cars;
-    this->carsCount = other.carsCount;
-}
-
 Car* Race::orderCars() const
 {
     Car* ordered = new Car[carsCount];

@@ -6,7 +6,6 @@ class Engine
 	int power;
 	int displacement;
 	char VIN[ENGINE_VIN_LENGTH + 1];
-	void copyFrom(const Engine& other);
 public:
 	Engine();
 	Engine(int power, int displacement, const char* VIN);

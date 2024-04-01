@@ -25,11 +25,9 @@ class Car
 	int acceleration = 0;
 	int topSpeed = 0;
 	int handling = 0;
-	void copyFrom(const Car& other);
 public:
 	Car();
 	Car(const char* regNumber, const char* manufacturer, const char* model, const Engine& engine, Wheel* wheel, float cityConsumption, float outOfCityConsumption, float combinedConsumption, Drivetrain drivetrain, int acceleration, int topSpeed, int handling);
-	Car& operator=(const Car& other);
 	const char* getRegNumber() const;
 	void setRegNumber(const char* regNumber);
 	const char* getManufacturer() const;

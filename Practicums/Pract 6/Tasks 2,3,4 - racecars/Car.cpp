@@ -10,19 +10,6 @@ int main()
 	Car c3;
 	c3 = c2;
 }
-void Car::copyFrom(const Car& other)
-{
-	setRegNumber(other.regNumber);
-	setManufacturer(other.manufacturer);
-	setModel(other.model);
-	setEngine(other.engine);
-	setWheel(other.wheel);
-	setFuelConsumption(other.fuelConsumption[0], other.fuelConsumption[1], other.fuelConsumption[2]);
-	setDrivetrain(other.drivetrain);
-	setAcceleration(other.acceleration);
-	setTopSpeed(other.topSpeed);
-	setHandling(other.handling);
-}
 
 Car::Car() = default;
 
@@ -38,15 +25,6 @@ Car::Car(const char* regNumber, const char* manufacturer, const char* model, con
 	setAcceleration(acceleration);
 	setTopSpeed(topSpeed);
 	setHandling(handling);
-}
-
-Car& Car::operator=(const Car& other)
-{
-	if (this != &other)
-	{
-		copyFrom(other);
-	}
-	return *this;
 }
 
 const char* Car::getRegNumber() const
