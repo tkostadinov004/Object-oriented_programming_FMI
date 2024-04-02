@@ -5,7 +5,7 @@
 - **Week 3:** File streams
 - **Week 4:** Binary files
 - **Week 5:** Classes, constructors, destructors, encapsulation, abstraction
-- **Week 6:** Rule of four, composition, and aggregation
+- **Week 6/7:** Rule of four, composition, and aggregation
 
 ## Seminars
 - **Week 1:** Structures, enums, unions
