@@ -44,6 +44,11 @@ MyString::MyString(const char* data)
 
 MyString::MyString(size_t storage)
 {
+	if (storage == 0)
+	{
+		return;
+	}
+
 	this->data = new char[storage];
 	this->data[0] = '\0';
 	this->capacity = storage - 1;
