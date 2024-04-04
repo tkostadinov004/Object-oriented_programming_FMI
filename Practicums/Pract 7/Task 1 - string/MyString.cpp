@@ -21,8 +21,8 @@ void MyString::free()
 
 void MyString::resize(unsigned newCapacity)
 {
-	char* temp = new char[newCapacity] {0};
-	capacity = newCapacity;
+	this->capacity = newCapacity;
+	char* temp = new char[this->capacity + 1] {0};
 	strcpy(temp, this->data);
 	delete[] this->data;
 	this->data = temp;
@@ -37,9 +37,17 @@ MyString::MyString(const char* data)
 		return;
 	}
 	this->length = strlen(data);
-	this->capacity = getNextPowerOfTwo(this->length);
-	this->data = new char[this->capacity] {0};
+	this->capacity = std::max(getNextPowerOfTwo(this->length + 1), 16u) - 1;
+	this->data = new char[this->capacity + 1] {0};
 	strcpy(this->data, data);
+}
+
+MyString::MyString(size_t storage)
+{
+	this->data = new char[storage];
+	this->data[0] = '\0';
+	this->capacity = storage - 1;
+	this->length = 0;
 }
 
 MyString::MyString(const MyString& other)
@@ -111,9 +119,9 @@ bool MyString::empty() const
 
 MyString& MyString::append(char c)
 {
-	if (length + 1 >= capacity)
+	if (length + 1 > capacity)
 	{
-		resize(capacity * 2);
+		resize(std::max(getNextPowerOfTwo(capacity + 1), 16u) - 1);
 	}
 	this->data[length++] = c;
 	return *this;

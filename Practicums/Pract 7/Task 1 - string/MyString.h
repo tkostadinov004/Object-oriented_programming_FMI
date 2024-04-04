@@ -11,6 +11,7 @@ class MyString
 public:
 	MyString();
 	MyString(const char* data);
+	explicit MyString(size_t storage);
 	MyString(const MyString& other);
 	~MyString();
 	MyString& operator=(const MyString& other);
