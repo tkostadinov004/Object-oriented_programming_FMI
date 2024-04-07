@@ -1,20 +1,6 @@
 #include <iostream>
 #include "LList.h"
 
-int main()
-{
-	LList<int> list;
-	list.push(3);
-	list.push(2);
-	list.push(1);
-	list.print();
-
-	LList<int> list2(list);
-	list2.insertAt(3, 5);
-
-	list.print();
-	list2.print();
-}
 template<typename T>
 LList<T>::Box::Box(const T& value, Box* next) : data(value), next(next) {}
 
@@ -68,6 +54,15 @@ typename LList<T>::Box* LList<T>::locate(size_t index)
 }
 
 template<typename T>
+LList<T>::LList(int x, int y)
+{
+	for (size_t i = x; i <= y; i++)
+	{
+		push_back(i);
+	}
+}
+
+template<typename T>
 LList<T>::LList(const LList<T>& other)
 {
 	copyFrom(other);
@@ -93,28 +88,41 @@ LList<T>::~LList()
 template<typename T>
 void LList<T>::push(const T& value)
 {
-	/*Box* temp = head;
-	while (temp->next != nullptr)
-	{
-		temp = temp->next;
-	}
-	temp->next = new Box(value, nullptr);*/
 	head = new Box(value, head);
 }
 
 template<typename T>
 void LList<T>::pop()
 {
-	/*Box* temp = head;
-	while (temp->next != nullptr)
-	{
-		temp = temp->next;
-	}
-	temp->next = nullptr;*/
 	if (head != nullptr)
 	{
 		head = head->next;
 	}
+}
+
+template<typename T>
+void LList<T>::push_back(const T& value)
+{
+	if (!head)
+	{
+		head = new Box(value, nullptr);
+		return;
+	}
+
+	Box* temp = head;
+	while (temp->next != nullptr)
+	{
+		temp = temp->next;
+	}
+	temp->next = new Box(value, nullptr);
+}
+
+template<typename T>
+T& LList<T>::get_ith(size_t index)
+{
+	Box* box = locate(index);
+	T res = T();
+	return box ? box->data : res;
 }
 
 template<typename T>
@@ -175,6 +183,167 @@ size_t LList<T>::count(int x) const
 		{
 			elementCount++;
 		}
+		temp = temp->next;
 	}
 	return elementCount;
+}
+
+template<typename T>
+void LList<T>::removeAll(const T& value)
+{
+	if (head == nullptr)
+	{
+		return;
+	}
+	if (head->data == value)
+	{
+		head = head->next;
+	}
+
+	Box* temp = head;
+	while (temp != nullptr)
+	{
+		if (temp->next && temp->next->data == value)
+		{
+			temp->next =  temp->next->next;
+		}
+		if (!temp->next && temp->data == value)
+		{
+			head = head->next;
+			break;
+		}
+		temp = temp->next;
+	}
+}
+
+template<typename T>
+void LList<T>::append(const LList<T>& list)
+{
+	Box* list_pred = list.head;
+	if (!list_pred)
+	{
+		return;
+	}
+
+	if (!head)
+	{
+		head = new Box(list_pred->data, nullptr);
+		list_pred = list_pred->next;
+	}
+	Box* this_pred = head;
+
+	while (this_pred != nullptr && this_pred->next != nullptr)
+	{
+		this_pred = this_pred->next;
+	}
+	while (list_pred != nullptr)
+	{
+		this_pred->next = new Box(list_pred->data, nullptr);
+		this_pred = this_pred->next;
+		list_pred = list_pred->next;
+	}
+}
+
+template<typename T>
+LList<T> LList<T>::concat(const LList<T>& list) const
+{
+	LList<T> result(*this);
+	result.append(list);
+	return result;
+}
+
+template<typename T>
+LList<T>& LList<T>::operator+=(const T& value)
+{
+	push_back(value);
+	return *this;
+}
+
+template<typename T>
+LList<T>& LList<T>::operator+=(const LList<T>& list)
+{
+	append(list);
+	return *this;
+}
+
+template<typename T>
+LList<T> LList<T>::operator+(const LList<T>& list) const
+{
+	return concat(list);
+}
+
+template<typename T>
+const T& LList<T>::operator[](int index) const
+{
+	return get_ith(index);
+}
+
+template<typename T>
+T& LList<T>::operator[](int index)
+{
+	return get_ith(index);
+}
+
+template<typename T>
+void LList<T>::reverse()
+{
+	Box* prev = nullptr;
+	Box* curr = head;
+	while (curr != nullptr)
+	{
+		Box* temp = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = temp;
+	}
+	head = prev;
+}
+
+template<typename T>
+LList<T> LList<T>::mapF(T(*func)(const T&)) const
+{
+	if (!head)
+	{
+		return LList<T>();
+	}
+	Box* curr = this->head;
+
+	LList<T> result;
+	result.head = new Box(func(curr->data), nullptr);
+	curr = curr->next;
+
+	Box* result_temp = result.head;
+	while (curr != nullptr)
+	{
+		result_temp->next = new Box(func(curr->data), nullptr);
+		result_temp = result_temp->next;
+		curr = curr->next;
+	}
+	return result;
+}
+
+template<typename T>
+LList<T>& LList<T>::mapD(T(*func)(const T&))
+{
+	Box* temp = head;
+	while (temp != nullptr)
+	{
+		temp->data = func(temp->data);
+		temp = temp->next;
+	}
+	return *this;
+}
+
+template<typename T>
+T LList<T>::reduce(T(*func)(const T& accumulator, const T& currentValue), const T& initialValue) const
+{
+	T result = initialValue;
+	Box* temp = head;
+
+	while (temp != nullptr)
+	{
+		result = func(result, temp->data);
+		temp = temp->next;
+	}
+	return result;
 }
