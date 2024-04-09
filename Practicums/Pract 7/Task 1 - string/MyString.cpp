@@ -6,7 +6,7 @@
 
 void MyString::copyFrom(const MyString& other)
 {
-	this->data = new char[other.capacity] {0};
+	this->data = new char[other.capacity + 1] {0};
 	strcpy(this->data, other.data);
 	this->capacity = other.capacity;
 	this->length = other.length;
