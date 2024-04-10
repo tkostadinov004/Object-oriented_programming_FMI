@@ -175,9 +175,9 @@ void MyString::shrinkToFit()
 
 void swap(MyString& first, MyString& second)
 {
-	MyString temp = first;
-	first = second;
-	second = temp;
+	std::swap(first.data, second.data);
+	std::swap(first.length, second.length);
+	std::swap(first.capacity, second.capacity);
 }
 
 int MyString::find(const MyString& str) const
