@@ -229,6 +229,10 @@ void MyString::replace(const char* str, int index)
 	{
 		throw std::invalid_argument("The passed string is invalid!");
 	}
+	if (index < 0 || index >= _size)
+	{
+		throw std::out_of_range("Index is out of range!");
+	}
 	if (str == this->_data)
 	{
 		char* temp = new char[strlen(this->_data) + 1] {0};
@@ -263,6 +267,10 @@ void MyString::push_back(char c)
 
 void MyString::pop_back()
 {
+	if (empty())
+	{
+		throw std::logic_error("String is empty!");
+	}
 	_size--;
 }
 
