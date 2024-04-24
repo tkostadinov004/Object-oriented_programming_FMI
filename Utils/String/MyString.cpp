@@ -1,6 +1,6 @@
+#include <iostream>
 #include "MyString.h"
 #include "HelperFunctions.h"
-#include <iostream>
 #pragma warning (disable: 4996)
 
 void MyString::resize(size_t newCapacity)
@@ -47,13 +47,13 @@ MyString::MyString() : MyString("") {}
 
 MyString::MyString(size_t capacity)
 {
-	this->_data = new char[std::max(8u, getNextPowerOfTwo(capacity))];
+	this->_data = new char[std::max(8u, HelperFunctions::getNextPowerOfTwo(capacity))];
 	this->_capacity = capacity;
 }
 
 MyString::MyString(const char* str)
 {
-	this->_capacity = std::max(8u, getNextPowerOfTwo(_size));
+	this->_capacity = std::max(8u, HelperFunctions::getNextPowerOfTwo(_size));
 	this->_data = new char[_capacity] {0};
 	append(str);
 }
@@ -172,7 +172,7 @@ MyString& MyString::insert(char c, int index)
 	}
 	if (_size + 1 > _capacity)
 	{
-		resize(std::max(8u, getNextPowerOfTwo(_size + 1)));
+		resize(std::max(8u, HelperFunctions::getNextPowerOfTwo(_size + 1)));
 	}
 
 	for (int i = _size - 1; i >= index; i--)
@@ -206,9 +206,9 @@ MyString& MyString::insert_range(const char* str, int index)
 		str = temp;
 	}
 	size_t inputSize = strlen(str);
-	if (_size + inputSize > _capacity)
+	if (_size + inputSize + 1 > _capacity)
 	{
-		resize(std::max(8u, getNextPowerOfTwo(_size + inputSize)));
+		resize(std::max(8u, HelperFunctions::getNextPowerOfTwo(_size + inputSize + 1)));
 	}
 
 	for (int i = _size - 1; i >= index; i--)
@@ -241,9 +241,9 @@ void MyString::replace(const char* str, int index)
 	}
 
 	size_t replacementLength = strlen(str);
-	if (replacementLength + index > _capacity)
+	if (_size + replacementLength + 1 + index > _capacity)
 	{
-		resize(std::max(8u, getNextPowerOfTwo(_size + replacementLength + index)));
+		resize(std::max(8u, HelperFunctions::getNextPowerOfTwo(_size + replacementLength + 1 + index)));
 	}
 	for (size_t i = 0; i < replacementLength; i++)
 	{
@@ -260,7 +260,7 @@ void MyString::push_back(char c)
 {
 	if (_size + 1 > _capacity)
 	{
-		resize(std::max(8u, getNextPowerOfTwo(_size + 1)));
+		resize(std::max(8u, HelperFunctions::getNextPowerOfTwo(_size + 1)));
 	}
 	_data[_size++] = c;
 }
@@ -276,9 +276,9 @@ void MyString::pop_back()
 
 MyString& MyString::append(char c, size_t count)
 {
-	if (_size + count > _capacity)
+	if (_size + 1 + count > _capacity)
 	{
-		resize(std::max(8u, getNextPowerOfTwo(_size + count)));
+		resize(std::max(8u, HelperFunctions::getNextPowerOfTwo(_size + 1 + count)));
 	}
 	for (size_t i = 0; i < count; i++)
 	{
@@ -307,9 +307,9 @@ MyString& MyString::append(const char* str, size_t count)
 	}
 
 	size_t inputSize = strlen(str);
-	if (_size + (inputSize * count) > _capacity)
+	if (_size + ((inputSize + 1) * count) > _capacity)
 	{
-		resize(std::max(8u, getNextPowerOfTwo(_size + (inputSize * count))));
+		resize(std::max(8u, HelperFunctions::getNextPowerOfTwo(_size + ((inputSize + 1) * count))));
 	}
 	for (size_t i = 0; i < count; i++)
 	{
@@ -346,7 +346,7 @@ int MyString::find(const char* pattern, size_t fromPosition) const
 	}
 	const char* text = this->c_str();
 	text += fromPosition;
-	return kmp(pattern, text, false);
+	return HelperFunctions::kmp(pattern, text, false);
 }
 
 int MyString::find(const MyString& pattern, size_t fromPosition) const
@@ -362,7 +362,7 @@ int MyString::rfind(const char* pattern, size_t fromPosition) const
 	}
 	const char* text = this->c_str();
 	text += fromPosition;
-	return kmp(pattern, text, true);
+	return HelperFunctions::kmp(pattern, text, true);
 }
 
 int MyString::rfind(const MyString& pattern, size_t fromPosition) const
@@ -372,7 +372,7 @@ int MyString::rfind(const MyString& pattern, size_t fromPosition) const
 
 bool MyString::starts_with(const char* pattern) const
 {
-	return isPrefix(this->c_str(), pattern);
+	return HelperFunctions::isPrefix(this->c_str(), pattern);
 }
 
 bool MyString::starts_with(const MyString& pattern) const
@@ -386,7 +386,7 @@ bool MyString::ends_with(const char* pattern) const
 	{
 		return false;
 	}
-	return isPrefix(this->c_str() + (_size - strlen(pattern)), pattern);
+	return HelperFunctions::isPrefix(this->c_str() + (_size - strlen(pattern)), pattern);
 }
 
 bool MyString::ends_with(const MyString& pattern) const
@@ -413,7 +413,8 @@ std::istream& operator>>(std::istream& is, MyString& str)
 {
 	size_t currentPos = is.tellg();
 	while (!is.eof() && is.get() != '\n')
-	{}
+	{
+	}
 
 	size_t count = (size_t)is.tellg() - currentPos;
 	char* buffer = new char[count + 1];

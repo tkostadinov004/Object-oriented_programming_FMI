@@ -1,16 +1,15 @@
-#include <cmath>
-#include <cstring>
+#include <iostream>
 #include "HelperFunctions.h"
 
-unsigned getNextPowerOfTwo(unsigned num)
+bool HelperFunctions::isPowerOfTwo(unsigned num)
 {
-	if ((num & (num - 1)) == 0)
-	{
-		return num << 1;
-	}
-	return 1 << (unsigned)ceil(log2(num));
+    return (num & (num - 1)) == 0;
 }
 
+unsigned HelperFunctions::getNextPowerOfTwo(unsigned num)
+{
+    return isPowerOfTwo(num) ? num << 1 : 1 << (unsigned)ceil(log2(num));
+}
 static void fillPrefixArray(int* arr, const char* pattern)
 {
 	if (!arr || !pattern)
@@ -44,7 +43,7 @@ static void fillPrefixArray(int* arr, const char* pattern)
 		}
 	}
 }
-int kmp(const char* pattern, const char* str, bool last)
+int HelperFunctions::kmp(const char* pattern, const char* str, bool last)
 {
 	if (!pattern || !str)
 	{
@@ -55,7 +54,7 @@ int kmp(const char* pattern, const char* str, bool last)
 
 	int* prefixes = new int[patternLen + 1];
 	fillPrefixArray(prefixes, pattern);
-	
+
 	int patternIndex = 0;
 	int matchIndex = -1;
 	for (int i = 0; i < strLen; i++)
@@ -84,7 +83,7 @@ int kmp(const char* pattern, const char* str, bool last)
 	return matchIndex;
 }
 
-bool isPrefix(const char* str, const char* pattern)
+bool HelperFunctions::isPrefix(const char* str, const char* pattern)
 {
 	if (!str || !pattern)
 	{
